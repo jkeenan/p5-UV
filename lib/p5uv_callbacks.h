@@ -11,6 +11,7 @@
 #include "p5uv_helpers.h"
 
 
+START_EXTERN_C
 /* helper functions and callbacks */
 extern void handle_alloc_cb(uv_handle_t* handle, size_t suggested_size, uv_buf_t* buf);
 extern void handle_check_cb(uv_check_t* handle);
@@ -22,6 +23,7 @@ extern void handle_prepare_cb(uv_prepare_t* handle);
 extern void handle_timer_cb(uv_timer_t* handle);
 extern void loop_walk_cb(uv_handle_t* handle, void* arg);
 extern void loop_walk_close_cb(uv_handle_t* handle, void* arg);
+END_EXTERN_C
 
 /* HANDLE callbacks */
 void handle_alloc_cb(uv_handle_t* handle, size_t suggested_size, uv_buf_t* buf)

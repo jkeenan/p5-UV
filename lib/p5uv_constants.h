@@ -32,11 +32,13 @@
     newCONSTSUB(stash, #c, newSVpvf("%s", c)); \
     av_push(export, newSVpv(#c, 0));
 
+START_EXTERN_C
 /* all of these call Perl API functions and should have thread context */
 extern void constants_export_uv(pTHX);
 extern void constants_export_uv_handle(pTHX);
 extern void constants_export_uv_loop(pTHX);
 extern void constants_export_uv_poll(pTHX);
+END_EXTERN_C
 
 void constants_export_uv(pTHX)
 {

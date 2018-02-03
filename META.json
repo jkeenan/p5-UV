@@ -29,14 +29,18 @@
          "requires" : {
             "Alien::libuv" : "0.006",
             "Config" : "0",
+            "ExtUtils::Depends" : "0.400",
             "ExtUtils::MakeMaker" : "7.12",
-            "Math::Int64" : "0"
+            "Math::Int64" : "0",
+            "XS::Object::Magic" : "0"
          }
       },
       "configure" : {
          "requires" : {
             "Alien::libuv" : "0.006",
-            "ExtUtils::MakeMaker" : "7.12"
+            "ExtUtils::Depends" : "0.400",
+            "ExtUtils::MakeMaker" : "7.12",
+            "XS::Object::Magic" : "0"
          }
       },
       "develop" : {
@@ -70,6 +74,7 @@
             "Math::Int64" : "0",
             "Moo" : "0",
             "Scalar::Util" : "0",
+            "XS::Object::Magic" : "0",
             "XSLoader" : "0.14",
             "parent" : "0",
             "perl" : "5.008001",

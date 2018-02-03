@@ -6,7 +6,7 @@ $VERSION = eval $VERSION;
 use strict;
 use warnings;
 use Moo;
-use Scalar::Util qw(blessed);
+use Scalar::Util ();
 
 use Exporter qw(import);
 use UV;

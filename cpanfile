@@ -9,19 +9,24 @@ on 'runtime' => sub {
     requires 'Math::Int64';
     requires 'Moo';
     requires 'Scalar::Util';
+    requires 'XS::Object::Magic';
     requires 'XSLoader' => '0.14';
 };
 
 on 'build' => sub {
     requires 'Alien::libuv' => '0.006';
     requires 'Config';
+    requires 'ExtUtils::Depends' => '0.400';
     requires 'ExtUtils::MakeMaker' => '7.12';
     requires 'Math::Int64';
+    requires 'XS::Object::Magic';
 };
 
 on 'configure' => sub {
     requires 'Alien::libuv' => '0.006';
+    requires 'ExtUtils::Depends' => '0.400';
     requires 'ExtUtils::MakeMaker' => '7.12';
+    requires 'XS::Object::Magic';
 };
 
 on 'test' => sub {

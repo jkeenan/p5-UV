@@ -1,16 +1,16 @@
 #define PERL_NO_GET_CONTEXT 1
-
 #include "EXTERN.h"
 #include "perl.h"
 #include "XSUB.h"
 
 #include "ppport.h"
 
-#define MATH_INT64_NATIVE_IF_AVAILABLE
-#include "perl_math_int64.h"
 #include <assert.h>
 #include <stdlib.h>
-#include "xs_object_magic.h"
+#include <xs_object_magic.h>
+
+#define MATH_INT64_NATIVE_IF_AVAILABLE
+#include "perl_math_int64.h"
 
 #include <uv.h>
 #include "p5uv_constants.h"
@@ -49,7 +49,7 @@ BOOT:
 }
 
 void p5uv_handle__destruct(SV *self, int closed)
-    PREINIT:
+    INIT:
         uv_handle_t *handle;
     CODE:
         handle = (uv_handle_t *)xs_object_magic_get_struct_rv_pretty(aTHX_ self, "uv_handle_t in _destruct");
@@ -62,7 +62,7 @@ void p5uv_handle__destruct(SV *self, int closed)
 
 
 void p5uv_handle__close(SV *self)
-    PREINIT:
+    INIT:
         uv_handle_t *handle;
     CODE:
         handle = (uv_handle_t *)xs_object_magic_get_struct_rv_pretty(aTHX_ self, "uv_handle_t in _close");
@@ -78,7 +78,7 @@ void p5uv_handle__has_struct(SV *self)
             PUSHs(&PL_sv_no);
 
 int p5uv_handle_active(SV *self)
-    PREINIT:
+    INIT:
         uv_handle_t *handle;
     CODE:
         handle = (uv_handle_t *)xs_object_magic_get_struct_rv_pretty(aTHX_ self, "uv_handle_t in active");
@@ -87,7 +87,7 @@ int p5uv_handle_active(SV *self)
     RETVAL
 
 int p5uv_handle_closing(SV *self)
-    PREINIT:
+    INIT:
         uv_handle_t *handle;
     CODE:
         handle = (uv_handle_t *)xs_object_magic_get_struct_rv_pretty(aTHX_ self, "uv_handle_t in closing");
@@ -96,7 +96,7 @@ int p5uv_handle_closing(SV *self)
     RETVAL
 
 int p5uv_handle_has_ref(SV *self)
-    PREINIT:
+    INIT:
         uv_handle_t *handle;
     CODE:
         handle = (uv_handle_t *)xs_object_magic_get_struct_rv_pretty(aTHX_ self, "uv_handle_t in has_ref");
@@ -105,14 +105,14 @@ int p5uv_handle_has_ref(SV *self)
     RETVAL
 
 void p5uv_handle_ref(SV *self)
-    PREINIT:
+    INIT:
         uv_handle_t *handle;
     CODE:
         handle = (uv_handle_t *)xs_object_magic_get_struct_rv_pretty(aTHX_ self, "uv_handle_t in ref");
         uv_ref(handle);
 
 void p5uv_handle_unref(SV *self)
-    PREINIT:
+    INIT:
         uv_handle_t *handle;
     CODE:
         handle = (uv_handle_t *)xs_object_magic_get_struct_rv_pretty(aTHX_ self, "uv_handle_t in unref");
@@ -411,7 +411,7 @@ BOOT:
 }
 
 int p5uv_loop__close(SV *self)
-    PREINIT:
+    INIT:
         uv_loop_t *loop;
     CODE:
         RETVAL = 0;
@@ -450,7 +450,7 @@ void p5uv_loop__create(SV *self, int want_default)
         }
 
 void p5uv_loop__destruct(SV *self, int is_default=0)
-    PREINIT:
+    INIT:
         uv_loop_t *loop;
     CODE:
         loop = (uv_loop_t *)xs_object_magic_get_struct_rv_pretty(aTHX_ self, "uv_loop_t in _destroy");
@@ -471,7 +471,7 @@ void p5uv_loop__has_struct(SV *self)
             PUSHs(&PL_sv_no);
 
 void p5uv_loop__walk(SV *self)
-    PREINIT:
+    INIT:
         uv_loop_t *loop;
         SV **callback;
     CODE:
@@ -485,7 +485,7 @@ void p5uv_loop__walk(SV *self)
         }
 
 int p5uv_loop_alive(SV *self)
-    PREINIT:
+    INIT:
         uv_loop_t *loop;
     CODE:
         loop = (uv_loop_t *)xs_object_magic_get_struct_rv_pretty(aTHX_ self, "uv_loop_t in alive");
@@ -494,7 +494,7 @@ int p5uv_loop_alive(SV *self)
     RETVAL
 
 int p5uv_loop_backend_fd(SV *self)
-    PREINIT:
+    INIT:
         uv_loop_t *loop;
     CODE:
         loop = (uv_loop_t *)xs_object_magic_get_struct_rv_pretty(aTHX_ self, "uv_loop_t in backend_fd");
@@ -503,7 +503,7 @@ int p5uv_loop_backend_fd(SV *self)
     RETVAL
 
 int p5uv_loop_backend_timeout(SV *self)
-    PREINIT:
+    INIT:
         uv_loop_t *loop;
     CODE:
         loop = (uv_loop_t *)xs_object_magic_get_struct_rv_pretty(aTHX_ self, "uv_loop_t in backend_timeout");
@@ -512,7 +512,7 @@ int p5uv_loop_backend_timeout(SV *self)
     RETVAL
 
 int p5uv_loop_configure(SV *self, uv_loop_option option, int value)
-    PREINIT:
+    INIT:
         uv_loop_t *loop;
     CODE:
         loop = (uv_loop_t *)xs_object_magic_get_struct_rv_pretty(aTHX_ self, "uv_loop_t in configure");
@@ -521,7 +521,7 @@ int p5uv_loop_configure(SV *self, uv_loop_option option, int value)
     RETVAL
 
 uint64_t p5uv_loop_now(SV *self)
-    PREINIT:
+    INIT:
         uv_loop_t *loop;
     CODE:
         loop = (uv_loop_t *)xs_object_magic_get_struct_rv_pretty(aTHX_ self, "uv_loop_t in now");
@@ -530,7 +530,7 @@ uint64_t p5uv_loop_now(SV *self)
     RETVAL
 
 int p5uv_loop_run(SV *self, uv_run_mode mode=UV_RUN_DEFAULT)
-    PREINIT:
+    INIT:
         uv_loop_t *loop;
     CODE:
         loop = (uv_loop_t *)xs_object_magic_get_struct_rv_pretty(aTHX_ self, "uv_loop_t in run");
@@ -539,14 +539,14 @@ int p5uv_loop_run(SV *self, uv_run_mode mode=UV_RUN_DEFAULT)
     RETVAL
 
 void p5uv_loop_stop(SV *self)
-    PREINIT:
+    INIT:
         uv_loop_t *loop;
     CODE:
         loop = (uv_loop_t *)xs_object_magic_get_struct_rv_pretty(aTHX_ self, "uv_loop_t in stop");
         uv_stop(loop);
 
 int p5uv_loop_update_time(SV *self)
-    PREINIT:
+    INIT:
         uv_loop_t *loop;
     CODE:
         loop = (uv_loop_t *)xs_object_magic_get_struct_rv_pretty(aTHX_ self, "uv_loop_t in update_time");

@@ -8,8 +8,10 @@
 #include "xs_object_magic.h"
 #include <uv.h>
 
+START_EXTERN_C
 extern void p5uv_destroy_handle(pTHX_ uv_handle_t* handle);
 extern void p5uv_destroy_loop(pTHX_ uv_loop_t* handle);
+END_EXTERN_C
 
 void p5uv_destroy_handle(pTHX_ uv_handle_t * handle)
 {

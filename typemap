@@ -18,9 +18,6 @@ T_INT64
 T_UINT64
     $var = SvU64($arg);
 
-T_PTROBJ_MG
-    $var = ($type)xs_object_magic_get_struct_rv_pretty(aTHX_ $arg, \"$var\");
-
 OUTPUT
 
 T_INT64
