@@ -21,7 +21,7 @@ sub TRIM {
 }
 
 my $dep = ExtUtils::Depends->new('UV', 'Alien::libuv', 'XS::Object::Magic');
-$dep->set_libs('-lpsapi') if WINLIKE();
+$dep->set_libs('-lpsapi', '-luserenv', '-lIphlpapi') if WINLIKE();
 {
     my @inc = ('-I.', '-I../..');
     my $cflags = TRIM(Alien::libuv->cflags);
@@ -40,7 +40,7 @@ my %xsbuild = (
     XSBUILD => {
         xs => {
             'lib/UV' => {
-                OBJECT => 'lib/UV$(OBJ_EXT) lib/perl_math_int64$(OBJ_EXT)',
+              OBJECT => 'lib/UV$(OBJ_EXT) lib/perl_math_int64$(OBJ_EXT)',
             },
         },
     },

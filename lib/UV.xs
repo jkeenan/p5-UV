@@ -9,7 +9,7 @@
 #include <stdlib.h>
 #include <xs_object_magic.h>
 
-#define MATH_INT64_NATIVE_IF_AVAILABLE
+#define MATH_INT64_NATIVE_IF_AVAILABLE 1
 #include "perl_math_int64.h"
 
 #include <uv.h>
